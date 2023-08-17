@@ -1,0 +1,577 @@
+{% extends 'shop/layouts/main.html'%}
+{% load static %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/catagoreis.css'%}">
+
+{% endblock style%}
+{% block content%}
+<!--
+<div class="product_container">
+    
+    {% for item in mobiles %}
+    <div class="product" data-name="">
+        <div class="first">
+            <img class="product1" src="{{item.product_image.url}}" alt="sir">
+            
+        
+        </div>
+        
+        <h3><a class="productname" href="{% url 'productview' item.category item.name %}">{{ item.name }}</a></h3>
+        <div class="star">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star" id="str"></i>
+            <i class="fa-solid fa-star-sharp-half-stroke"></i>
+        </div>
+        
+        <h3 class="price"><span>Off price</span>  ₹{{ item.selling_price }}</h3>
+        <h4 class="mrp_price">M.R.P.:   ₹{{ item.original_price }}</h4>
+        <h4 class="free">Free Delivery by Shopin</h4>
+
+
+    </div>
+    {% endfor %}
+
+       
+
+</div>
+
+-->
+
+<div class="slide-container">
+    <div class="slide">
+        <img class="slide" src="{% static 'images/image4.jpg'%}" alt="Image 3">
+    <div class="slide">
+        <img class="slide" src="{% static 'images/image5.jpg'%}" alt="Image 3">
+
+    </div>
+    <div class="slide">
+        <img class="slide" src="{% static 'images/image6.jpg'%}" alt="Image 3">
+
+    </div>
+        
+        
+    </div>
+    <button id="prev-btn"><i class="fa-solid fa-circle-arrow-left"></i></button>
+    <button id="next-btn"><i class="fa-solid fa-circle-arrow-right"></i></button>
+</div>
+
+
+<div class="product_catagory">
+
+    <div class="producthd">
+        <h1 class="phead">Deals for Appliances</h1>
+        <div class="product_item">
+        
+            {% for item in highliteAppliances %}
+            <div class="product_back">
+                <a href="{% url 'productview' item.category item.name %}" ><img class="proimg" src="{{item.product_image.url}}" alt="">
+                <h3>{{item.name}}</h3></a>
+            </div>
+            
+            
+            {% endfor %}
+    
+        </div>
+        <div class="see">
+            <a class="seeall" href="{% url 'collectionsview' 'Appliances' %}">See More</a>
+        </div>
+        
+
+    </div>
+    
+    <div class="producthd">
+        <h1 class="phead">Deals for Mobiles</h1>
+        <div class="product_item">
+        
+            {% for item in highliteMobiles %}
+            <div class="product_back">
+                <a href="{% url 'productview' item.category item.name %}"><img class="proimg" src="{{item.product_image.url}}" alt="">
+                <h3>{{item.name}}</h3></a>
+                
+                
+            </div>
+            {% endfor %}
+    
+        </div>
+        <a class="seeall" href="{% url 'collectionsview' 'Mobiles' %}">See More</a>
+
+    </div>
+    
+    <div class="producthd">
+        <h1 class="phead">Deals for Electronics</Em></h1>
+        <div class="product_item">
+            {% for item in highliteElectronics %}
+            <div class="product_back">
+                <a href="{% url 'productview' item.category item.name %}"><img class="proimg" src="{{item.product_image.url}}" alt="">
+                <h3>{{item.name}}</h3></a>
+            </div>
+            
+            {% endfor %}
+    
+        </div>
+        <a class="seeall" href="{% url 'collectionsview' 'Electronics' %}">See More</a>
+
+    </div>
+    
+    <div class="producthd">
+        <h1 class="phead">Deals for Sprorts</h1>
+        <div class="product_item">
+            {% for item in highliteSports %}
+            <div class="product_back">
+                <a href="{% url 'productview' item.category item.name %}"><img class="proimg" src="{{item.product_image.url}}" alt="">
+                <h3>{{item.name}}</h3></a>
+            </div>
+            
+            {% endfor %}
+    
+        </div>
+        <a class="seeall" href="{% url 'collectionsview' 'Sports' %}">See More</a>
+
+    </div>
+
+    <div class="producthd">
+        <h1 class="phead">Deals for Fashions</h1>
+        <div class="product_item">
+            {% for item in highliteFashion %}
+            <div class="product_bac">
+                <a href="{% url 'productview' item.category item.name %}"><img class="proimg" src="{{item.product_image.url}}" alt="">
+                <h3>{{item.name}}</h3></a>
+            </div>
+            
+            {% endfor %}
+    
+        </div>
+        <a class="seeall" href="{% url 'collectionsview' 'Fashion' %}">See More</a>
+
+    </div>
+
+    <div class="producthd">
+        <h1 class="phead">Deals for Grocery</h1>
+        <div class="product_item">
+            {% for item in highliteGrocery %}
+            <div class="product_back">
+                <a href="{% url 'productview' item.category item.name %}"><img class="proimg" src="{{item.product_image.url}}" alt="">
+                <h3>{{item.name}}</h3></a>
+            </div>
+            
+            {% endfor %}
+    
+        </div>
+        <a class="seeall" href="{% url 'collectionsview' 'Grocery' %}">See More</a>
+
+    </div>
+
+    <div class="producthd">
+        <h1 class="phead">Deals for Toys and beauty</h1>
+        <div class="product_item">
+            {% for item in highliteToysBeauty %}
+            <div class="product_back">
+                <a href="{% url 'productview' item.category item.name %}"><img class="proimg" src="{{item.product_image.url}}" alt="">
+                <h3>{{item.name}}</h3></a>
+            </div>
+            
+            {% endfor %}
+    
+        </div>
+        <a class="seeall" href="{% url 'collectionsview' 'Beauty & Toys' %}">See More</a>
+
+    </div>
+
+    <div class="producthd">
+        <h1 class="phead">Deals for Fashion</h1>
+        <div class="product_ite">
+            {% for item in highlitetrending_Fashion %}
+            <div class="product_bac">
+                <a href="{% url 'productview' item.category item.name %}"><img class="proimg" src="{{item.product_image.url}}" alt="">
+                <h3>{{item.name}}</h3></a>
+            </div>
+            
+            {% endfor %}
+    
+        </div>
+        <a class="seeall" href="{% url 'collectionsview' 'Fashion' %}">See More</a>
+
+    </div>
+    
+
+</div>
+
+<div class="product_Block">
+
+    <h1>Trending item's</h1>
+
+    <div class="product_contain">
+        <div class="btn">
+            <button class="pre-btn"><i class="fa-solid fa-circle-arrow-left"></i></button>
+            <button class="nxt-btn"><i class="fa-solid fa-circle-arrow-right"></i></button>
+        </div>
+        
+        
+        {% for item in trendingproduct %}
+        
+        <a href="{% url 'productview' item.category item.name %}"><div class="product_card" data-name="">
+            
+            <div class="product_img">
+                <img class="pimg" src="{{item.product_image.url}}" alt="sir">
+                
+            
+            </div>
+            <div class="detaill">
+                <div class="productname">
+                    <h3 data-product="{{item.id}}" class="proname" href="">{{ item.name }}</h3>
+    
+                </div>
+                
+                <div class="star">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-sharp-half-stroke"></i>
+                </div>
+                
+                <h3 class="price"><span>Off price</span>  ₹{{ item.selling_price }}</h3>
+                <h4 class="mrp_price">M.R.P.:   ₹{{ item.original_price }}</h4>
+                <h4 class="free">Free Delivery by Shopin</h4>
+
+            </div></a>
+            
+    
+    
+        </div>
+        {% endfor %}
+    
+    </div>
+    
+</div>
+
+<div class="product_Block">
+
+    <h1>Mobiles</h1>
+    
+    <section class="product_contain">
+        
+        <div class="btn">
+            <button class="pre-btn"><i class="fa-solid fa-circle-arrow-left"></i></button>
+            <button class="nxt-btn"><i class="fa-solid fa-circle-arrow-right"></i></button>
+        </div>
+        
+        {% for item in mobiles %}
+        <a href="{% url 'productview' item.category item.name %}"><div class="product_card" data-name="">
+            <div class="product_img">
+                <img class="pimg" src="{{item.product_image.url}}" alt="sir">
+                
+            </div>
+            <div class="psname">
+                <h3>{{item.name}}</h3>
+
+            </div>
+
+    
+        </div></a>
+        {% endfor %}
+        
+    
+    </section>
+    <div  class="more">
+        <a href="{% url 'collectionsview' 'Mobiles' %}">See More</a>
+    </div>
+
+   
+    
+</div>
+
+<div class="product_Block">
+
+    <h1>Fashion</h1>
+    <section class="product_contain">
+        
+        <div class="btn">
+            <button class="pre-btn"><i class="fa-solid fa-circle-arrow-left"></i></button>
+            <button class="nxt-btn"><i class="fa-solid fa-circle-arrow-right"></i></button>
+        </div>
+        
+        {% for item in fashion %}
+        <a href="{% url 'productview' item.category item.name %}"><div class="product_card" data-name="">
+            <div class="product_img">
+                <img class="pimg" src="{{item.product_image.url}}" alt="sir">
+                
+            </div>
+            <div class="psname">
+                <h3>{{item.name}}</h3>
+
+            </div>
+
+        </div></a>
+        {% endfor %}
+    
+    </section>
+
+    <div  class="more">
+        <a href="{% url 'collectionsview' 'Fashion' %}">See More</a>
+    </div>
+
+</div>
+
+
+<div class="product_Block">
+    <h1>Electronics</h1>
+    <section class="product_contain">
+        
+        <div class="btn">
+            <button class="pre-btn"><i class="fa-solid fa-circle-arrow-left"></i></button>
+            <button class="nxt-btn"><i class="fa-solid fa-circle-arrow-right"></i></button>
+        </div>
+        
+        {% for item in electronics %}
+        <a href="{% url 'productview' item.category item.name %}"><div class="product_card" data-name="">
+            <div class="product_img">
+                <img class="pimg" src="{{item.product_image.url}}" alt="sir">
+                
+            </div>
+            <div class="psname">
+                <h3>{{item.name}}</h3>
+
+            </div>
+
+        </div></a>
+        {% endfor %}
+    
+    </section>
+
+    <div  class="more">
+        <a href="{% url 'collectionsview' 'Electronics' %}">See More</a>
+    </div>
+
+</div>
+
+
+<div class="product_Block">
+    <h1>Appliances</h1>
+    <section class="product_contain">
+        
+        <div class="btn">
+            <button class="pre-btn"><i class="fa-solid fa-circle-arrow-left"></i></button>
+            <button class="nxt-btn"><i class="fa-solid fa-circle-arrow-right"></i></button>
+        </div>
+        
+        {% for item in appliances %}
+        <a href="{% url 'productview' item.category item.name %}"><div class="product_card" data-name="">
+            <div class="product_img">
+                <img class="pimg" src="{{item.product_image.url}}" alt="sir">
+                
+            </div>
+            <div class="psname">
+                <h3>{{item.name}}</h3>
+
+            </div>
+        </div></a>
+        {% endfor %}
+    
+    </section>
+    <div  class="more">
+        <a href="{% url 'collectionsview' 'Appliances' %}">See More</a>
+    </div>
+
+</div>
+
+<div class="product_Block">
+    <h1>Grocery</h1>
+    <section class="product_contain">
+        
+        <div class="btn">
+            <button class="pre-btn"><i class="fa-solid fa-circle-arrow-left"></i></button>
+            <button class="nxt-btn"><i class="fa-solid fa-circle-arrow-right"></i></button>
+        </div>
+        
+        {% for item in grocery %}
+        <a href="{% url 'productview' item.category item.name %}"><div class="product_card" data-name="">
+            <div class="product_img">
+                <img class="pimg" src="{{item.product_image.url}}" alt="sir">
+                
+            </div>
+            <div class="psname">
+                <h3>{{item.name}}</h3>
+
+            </div>
+        </div></a>
+        {% endfor %}
+    
+    </section>
+    <div  class="more">
+        <a href="{% url 'collectionsview' 'Grocery' %}">See More</a>
+    </div>
+
+</div>
+
+<div class="product_Block">
+    <h1>Sports</h1>
+    <section class="product_contain">
+        
+        <div class="btn">
+            <button class="pre-btn"><i class="fa-solid fa-circle-arrow-left"></i></button>
+            <button class="nxt-btn"><i class="fa-solid fa-circle-arrow-right"></i></button>
+        </div>
+        
+        {% for item in sports %}
+        <a href="{% url 'productview' item.category item.name %}"><div class="product_card" data-name="">
+            <div class="product_img">
+                <img class="pimg" src="{{item.product_image.url}}" alt="sir">
+                
+            </div>
+            <div class="psname">
+                <h3>{{item.name}}</h3>
+
+            </div>
+        </div></a>
+        {% endfor %}
+    
+    </section>
+
+    <div  class="more">
+        <a href="{% url 'collectionsview' 'Sports' %}">See More</a>
+    </div>
+
+</div>
+
+<div class="product_Block">
+    <h1>Toys & Beauty</h1>
+    <section class="product_contain">
+
+        <div class="btn">
+            <button class="pre-btn"><i class="fa-solid fa-circle-arrow-left"></i></button>
+            <button class="nxt-btn"><i class="fa-solid fa-circle-arrow-right"></i></button>
+        </div>
+        
+        {% for item in beautytoys %}
+        <a href="{% url 'productview' item.category item.name %}"><div class="product_card" data-name="">
+            <div class="product_img">
+                <img class="pimg" src="{{item.product_image.url}}" alt="sir">
+                
+            </div>
+            <div class="psname">
+                <h3>{{item.name}}</h3>
+
+            </div>
+        </div></a>
+        {% endfor %}
+    
+    </section>
+
+    <div  class="more">
+        <a href="{% url 'collectionsview' 'Beauty & Toys' %}">See More</a>
+    </div>
+
+</div>
+
+
+
+
+
+
+<script src="{% static 'script/catagorys.js'%}"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+    const proview = document.getElementsByClassName("proname");
+    
+    for(i=0; i<proview.length; i++){
+        proview[i].addEventListener("click", function(){
+            let postObj = {
+                'pid':this.dataset.product
+            
+            }
+            console.log(postObj);
+            fetch("/recent",{
+                method: 'POST',
+                credentials: 'same-origin',
+                headers:{
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+                body: JSON.stringify(postObj)
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                console.log(data);
+                //alert(data['status'])
+            });
+        
+
+        });
+
+    }
+        
+    });
+    
+
+
+
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide img');
+const totalSlides = slides.length;
+
+function showSlide(slideIndex) {
+  if (slideIndex < 0) {
+    slideIndex = totalSlides - 1;
+  } else if (slideIndex >= totalSlides) {
+    slideIndex = 0;
+  }
+
+  const offset = -slideIndex * 100;
+  document.querySelector('.slide').style.transform = `translateX(${offset}%)`;
+  currentSlide = slideIndex;
+}
+
+function nextSlide() {
+  showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+  showSlide(currentSlide - 1);
+}
+
+// Automatic slideshow
+const interval = 3000; // Change slide every 3 seconds (adjust as needed)
+let autoSlideInterval;
+
+function startAutoSlide() {
+  autoSlideInterval = setInterval(nextSlide, interval);
+}
+
+function stopAutoSlide() {
+  clearInterval(autoSlideInterval);
+}
+
+// Manual controls
+const prevButton = document.getElementById('prev-btn');
+const nextButton = document.getElementById('next-btn');
+
+prevButton.addEventListener('click', function () {
+  stopAutoSlide();
+  prevSlide();
+});
+
+nextButton.addEventListener('click', function () {
+  stopAutoSlide();
+  nextSlide();
+});
+
+// Show the initial slide and start automatic slideshow
+showSlide(currentSlide);
+startAutoSlide();
+
+
+</script>
+
+
+
+
+
+
+{% endblock content %}

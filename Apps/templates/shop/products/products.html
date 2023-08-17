@@ -1,0 +1,91 @@
+{% extends 'shop/layouts/main.html'%}
+{% load static %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/productees.css' %}">
+{% endblock style%}
+{% block content%}
+
+<h1 class="head">{{headcatagory}} Collections</h1>
+
+<div class="product_container">
+    
+    {% for item in products %}
+    
+    <div class="product" data-name="">
+        <div class="first">
+            <img class="product1" src="{{item.product_image.url}}" alt="sir">
+            
+        
+        </div>
+        
+        <div class="productname">
+            
+            <h3><a data-product="{{item.id}}" class="proname" href="{% url 'productview' item.category item.name %}">{{ item.name }}</a></h3>
+            
+        </div>
+        
+        <div class="star">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-sharp-half-stroke"></i>
+        </div>
+        
+        <h3 class="price"><span>Off price</span>  ₹{{ item.selling_price }}</h3>
+        <h4 class="mrp_price">M.R.P.:   ₹{{ item.original_price }}</h4>
+        <h4 class="free">Free Delivery by Shopin</h4>
+
+
+    </div>
+    {% endfor %}
+    
+   
+
+</div>
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        const proview = document.getElementsByClassName("proname");
+        
+        for(i=0; i<proview.length; i++){
+            proview[i].addEventListener("click", function(){
+                let postObj = {
+                    'pid':this.dataset.product
+                
+                }
+                console.log(postObj);
+                fetch("/recent",{
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers:{
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': '{{ csrf_token }}',
+                    },
+                    body: JSON.stringify(postObj)
+                }).then(response => {
+                    return response.json();
+                }).then(data => {
+                    console.log(data);
+                    //alert(data['status'])
+                });
+            
+
+            });
+
+        }
+            
+    });
+    
+    
+    
+    
+</script>
+
+
+
+
+{% endblock content %}

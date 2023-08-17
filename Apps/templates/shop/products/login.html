@@ -1,0 +1,61 @@
+{% extends 'shop/layouts/main.html'%}
+{% load static %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/logine.css'%}">
+{% endblock style%}
+{% block content%}
+
+
+<div class="maincontainer">
+    <div class="container">
+        <div class="reghed">
+            <h4>User Login</h4>
+        </div>
+    
+        <div class="content">
+    
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="mainhead">
+                    <div class="maindetail1">
+                        <div class="detail">
+                            
+                            <input type="text" name="username" id="username" placeholder="User Name">
+                            <!-- <label for="" class="label">User Name</label> -->
+                
+                        </div>
+                        
+                        <div class="detail">
+                            
+                            <input type="password" name="password" id="password" placeholder="Password">
+                            <!-- <label for="" class="label">Password</label> -->
+                
+                        </div>
+                        <div class="regcls">
+                            <button type="submit" class="regbtn">Login</button>
+                        </div>
+
+                        <p class="noacc">Don't have an account?<a class="signup" href="{% url 'register' %}">Signup</a></p>
+                        
+                    </div>
+             
+                </div>
+                
+    
+            </form>
+            
+            
+            
+            
+    
+        </div>
+    
+        
+    
+    </div>
+
+</div>
+
+{% endblock content %}
+
+

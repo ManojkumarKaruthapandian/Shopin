@@ -1,0 +1,43 @@
+{% extends 'shop/layouts/main.html'%}
+{% load static %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/productes.css' %}">
+{% endblock style%}
+{% block content%}
+
+<h1>Recommendations</h1>
+
+<div class="product_container">
+    
+    {% for item in trendingproduct %}
+    <div class="product" data-name="">
+        <div class="first">
+            <img class="product1" src="{{item.product_image.url}}" alt="sir">
+            
+        
+        </div>
+        <div class="productname">
+            <h3><a href="{% url 'productview' item.category item.name %}">{{ item.name }}</a></h3>
+            
+        </div>
+        
+        <div class="star">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-sharp-half-stroke"></i>
+        </div>
+        
+        <h3 class="price"><span>Off price</span>  ₹{{ item.selling_price }}</h3>
+        <h4 class="mrp_price">M.R.P.:   ₹{{ item.original_price }}</h4>
+        <h4 class="free">Free Delivery by Shopin</h4>
+
+
+    </div>
+    {% endfor %}
+    
+   
+
+</div>
+{% endblock content %}

@@ -1,0 +1,93 @@
+{% extends 'shop/layouts/main.html'%}
+{% load static %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/cartes.css'%}">
+{% endblock style%}
+{% block content%}
+
+
+<div class="product_container">
+    <div class="pro1">
+        <div class="itemhed">
+            <h1>Shopping Cart</h1>
+        </div>
+        {% for item in cart %}
+        <div class="product" data-name="">
+            <div class="first1">
+                <img class="product1" src="{{ item.product.product_image.url }}" alt="sir">
+            </div>
+            <div class="details">
+                <div class="itemname">
+                    <h1><a href="">{{ item.product.name }}</a></h1>
+                    <div class="star">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-sharp-half-stroke"></i>
+                    </div>
+    
+                    
+    
+                </div>
+    
+    
+                <div class="itemdis">
+                    <h1 class="price"><span>Offer price :</span>₹{{ item.product.selling_price }}</h1>
+                    <h1 class="mrp_price">M.R.P.: <span>₹{{ item.product.original_price }}</span></h1>
+                    
+                    <div>
+                        
+                    
+                            
+                    </div>
+                    <h3>Inclusive of all tax</h3>
+                    <h3><span>No Cost EMI</span> is available</h3>
+                      
+                    <div class="spl">
+                        <h3 class="frd">Free Delivery</h3>
+                        <h3 class="quantity">Quantity {{ item.product_qty }}</h3>
+                        <h3>Total Rs :</h3><span><h3 class="amt">{{ item.total_cost }}</h3></span>
+                        <a href="{% url 'remove_cart' item.id %}" onclick="return confirm('Are you sure to Remove')" class="btnrem">Remove</a>
+        
+                    </div>
+    
+    
+    
+                </div>
+    
+                
+    
+            </div>
+            
+            
+    
+        </div>
+        {% endfor %}
+        
+
+    </div>
+    <div class="pro2">
+        <h1>Total Amount</h1>
+        <div id="net">0</div>
+    </div>
+    
+    
+    
+    
+
+</div>
+
+
+<script>
+    const nodes = document.querySelectorAll('.amt');
+    const arr = Array.from(nodes);
+    const res = arr.reduce((acc, curr) => {
+        return acc += Number(curr.textContent)
+    }, 0);
+    document.getElementById("net").innerHTML="Rs : "+res
+</script>
+
+
+
+{% endblock content%}

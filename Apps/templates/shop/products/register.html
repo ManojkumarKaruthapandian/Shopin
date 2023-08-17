@@ -1,0 +1,139 @@
+{% extends 'shop/layouts/main.html'%}
+{% load static %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/registeres.css'%}">
+{% endblock style%}
+{% block content%}
+
+<div class="maincontainer">
+    <div class="container">
+        <div class="reghed">
+            <h4>Register</h4>
+        </div>
+    
+        <div class="content">
+            
+            <form method="post" action="">
+                <div class="mainhead">
+                    <div class="maindetail1">
+                        {% csrf_token %}
+                        
+                        <div class="detail">
+                            <!-- <label for="" class="label">User Name</label> -->
+                            {{form.username}}
+                            {% if form.errors.username %}
+                                <label for="">{{ form.errors.username}}</label>      
+                            {% endif %}
+                
+                        </div>
+                        <div class="detail">
+                            <!-- <label for="" class="label">User Email</label> -->
+                            {{form.email}}
+                            {% if form.errors.email %}
+                                <label for="">{{ form.errors.email }}</label>      
+                            {% endif %}
+                
+                        </div>
+                        
+                        
+                        <div class="detail">
+                            <!-- <label for="" class="label">Password</label> -->
+                            {{form.password1}}
+                            {% if form.errors.password1 %}
+                                <label for="">{{ form.errors.password1}}</label>      
+                            {% endif %}
+                
+                        </div>
+                        <div class="detail">
+                            <!-- <label for="" class="label">Confirm Password</label> -->
+                            
+                            {{form.password2}}
+                            {% if form.errors.password2 %}
+                                <label for="">{{ form.errors.password2}}</label>      
+                            {% endif %}
+                
+                        </div>
+                        
+                    </div>
+                    <div class="maindetail2">
+                        <div class="detail">
+                            <!-- <label for="" class="label">Phone Number</label> -->
+                            {{form.phone_number}}
+                            {% if form.errors.phone_number %}
+                                <label for="">{{ form.errors.phone_number}}</label>      
+                            {% endif %}
+                
+                        </div>
+                        <div class="detail">
+                            <!-- <label for="" class="label">Address</label> -->
+                            {{form.address}}
+                            {% if form.errors.address %}
+                                <label for="">{{ form.errors.address}}</label>      
+                            {% endif %}
+                
+                        </div>
+                        <div class="location">
+                            <div class="detail">
+                                <!-- <label for="" class="label">City</label> -->
+                                {{form.city}}
+                                {% if form.errors.city %}
+                                    <label for="">{{ form.errors.city}}</label>      
+                                {% endif %}
+                    
+                            </div>
+                            <div class="detail">
+                                <!-- <label for="" class="label">State</label> -->
+                                {{form.state}}
+                                {% if form.errors.state %}
+                                    <label for="">{{ form.errors.state}}</label>      
+                                {% endif %}
+                    
+                            </div>
+
+                        </div>
+                        
+                        
+                        <div class="detail">
+                            <!-- <label for="" class="label">Pincode</label> -->
+                            {{form.pincode}}
+                            {% if form.errors.pincode %}
+                                <label for="">{{ form.errors.pincode}}</label>      
+                            {% endif %}
+                
+                        </div>
+
+                    </div>
+                         
+                </div>
+                <div class="detail" id="gender">
+                    <label for="" class="label">Gender</label>
+                    {{form.gender}}
+                    {% if form.errors.gender %}
+                        <label for="">{{ form.errors.gender}}</label>      
+                    {% endif %}
+        
+                </div>
+    
+                <div class="regcls">
+                    <button type="submit" class="regbtn">Register</button>
+                </div>
+                
+                
+            </form>
+
+            
+
+            <p class="alduser">Already user ?<a class="login" href="{% url 'login' %}"> Login Now</a></p>
+     
+        </div>
+        
+    
+        
+    
+    </div>
+
+</div>
+
+{% endblock content %}
+
+

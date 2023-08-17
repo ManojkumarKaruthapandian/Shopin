@@ -1,0 +1,232 @@
+{% extends 'shop/layouts/main.html'%}
+{% load static %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/productvies.css'%}">
+{% endblock style%}
+{% block content%}
+
+<h1 class="head">{{headcatagory}} Product</h1>
+<div class="product_container">
+    
+    {% for item in products %}
+    <div class="product" data-name="">
+        <div class="first">
+            <img class="product1" src="{{ item.product_image.url }}" alt="sir">
+            
+        </div>
+        <div class="details">
+            <div class="itemname">
+                <h1 class="pname">{{ item.name }}</h1>
+                <div class="star">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-sharp-half-stroke"></i>
+                </div>
+
+                
+
+            </div>
+
+
+            <div class="itemdis">
+                <h1 class="price"><span>Offer price :</span>₹{{ item.selling_price }}</h1>
+                <h1 class="mrp_price">M.R.P.: ₹{{ item.original_price }}</h1>
+                <div class="quantity">
+                    {% if item.quantity > 0 %}
+                    <input type="hidden" value="{{item.id}}" id="pid">
+                    
+                    
+                        <div class="btnborder">
+                            <button id="btnMinus">-</button>
+                            <input type="text" name="qty" id="txtQty" value="1">
+                            <button id="btnPlus">+</button>
+                            <button class="button" id="btnfav"><i class="fa-solid fa-heart fa-2xl"></i></button>
+                        </div>
+                        
+                        
+                        <button class="button" id="btnCart" >Add To Card</button>
+                        <button class="button" id="btnorder" >Buy Now</button>
+
+                    
+                    
+                    {% else %}
+                    <button class="buttonno" ><a href="">Out of Stock</a></button>
+                    {% endif %}
+                </div>
+                <h3>Inclusive of all tax</h3>
+                <h3><span>No Cost EMI</span> is available</h3>
+                  
+                <div class="spl">
+                    <a href=""><i class="fa-solid fa-truck"></i><br>Free Delivery</a>
+                    
+                    <i class="fa-solid fa-shield-check"></i>
+    
+                </div>
+
+            </div>
+
+            
+            <div class="dis">
+                <h2>About this </h2>
+                <h3 class="discription">{{ item.description }}</h3>
+                
+
+            </div>
+
+            
+
+        </div>
+        
+        
+
+    </div>
+    {% endfor %}
+    
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+    const btnPlus = document.getElementById("btnPlus");
+    const btnMinus = document.getElementById("btnMinus");
+    const txtQty = document.getElementById("txtQty");
+    const pid = document.getElementById("pid");
+    const btnCart = document.getElementById("btnCart");
+    const btnorder = document.getElementById("btnorder");
+    const btnfav = document.getElementById("btnfav");
+    
+
+    btnPlus.addEventListener("click", function(){
+        let qty=parseInt(txtQty.value,10);
+        qty=isNaN(qty)?0:qty;
+        if(qty<10){
+            qty++;
+            txtQty.value=qty;
+        }
+    });
+
+    btnMinus.addEventListener("click", function(){
+        let qty=parseInt(txtQty.value,10);
+        qty=isNaN(qty)?0:qty;
+        if(qty>1){
+            qty--;
+            txtQty.value=qty;
+        }
+    });
+
+    btnCart.addEventListener("click", function(){
+        let qty=parseInt(txtQty.value,10);
+        qty=isNaN(qty)?0:qty;
+
+        if(qty>0){
+            let postObj = {
+                'product_qty': qty,
+                'pid': pid.value
+                
+            }
+            console.log(postObj);
+            fetch("/addtocart",{
+                method: 'POST',
+                credentials: 'same-origin',
+                headers:{
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+                body: JSON.stringify(postObj)
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                //console.log(data);
+                alert(data['status'])
+            });
+
+            
+            
+          
+        }else{
+            alert("Please Enter The Quantity");
+        }
+    });
+
+    btnorder.addEventListener("click", function(){
+        let qty=parseInt(txtQty.value,10);
+        qty=isNaN(qty)?0:qty;
+
+        if(qty>0){
+            let postObj = {
+                'product_qty': qty,
+                'pid': pid.value
+                
+            }
+            console.log(postObj);
+            fetch("/order",{
+                method: 'POST',
+                credentials: 'same-origin',
+                headers:{
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+                body: JSON.stringify(postObj)
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                //console.log(data);
+                alert(data['status'])
+            });
+
+            
+            
+          
+        }else{
+            alert("Please Enter The Quantity");
+        }
+    });
+
+    btnfav.addEventListener("click", function(){
+        let qty=parseInt(txtQty.value,10);
+        qty=isNaN(qty)?0:qty;
+
+        if(qty>0){
+            let postObj = {
+                'pid': pid.value
+                
+            }
+            console.log(postObj);
+            fetch("/favorite",{
+                method: 'POST',
+                credentials: 'same-origin',
+                headers:{
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+                body: JSON.stringify(postObj)
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                //console.log(data);
+                alert(data['status'])
+            });
+
+            
+            
+          
+        }else{
+            alert("Please Enter The Quantity");
+        }
+    });
+
+
+});
+
+
+
+
+</script>
+{% endblock content %}
+
+
